@@ -12,10 +12,10 @@ export const App: VFC = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/" component={Index} />
 				<Route exact path="/pokemon" component={SearchName} />
 				<Route path="/type" component={SearchType} />
 				<Route path="/partner" component={SearchPartner} />
+				<Route path="/" component={Index} />
 			</Switch>
 		</BrowserRouter>
 	);

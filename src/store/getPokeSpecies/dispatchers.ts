@@ -6,6 +6,7 @@ export const searchNameGetPokeSpeciesDispatcher = (
 	dispatch: Dispatch<actions.SearchNameActionTypes>
 ) => (no: number): void => {
 	if (!no) return;
+	dispatch(actions.searchNameResetData());
 	dispatch(actions.searchNameFetchStarted(no));
 };
 
@@ -13,10 +14,8 @@ export const searchNameGetPokeSpeciesDispatcher = (
 export const searchTypeGetPokeSpeciesDispatcher = (
 	dispatch: Dispatch<actions.SearchTypeActionTypes>
 ) => (no: number): void => {
-	if (!no) {
-		dispatch(actions.searchTypeDataReset());
-		return;
-	}
+	dispatch(actions.searchTypeResetData());
+	if (!no) return;
 	dispatch(actions.searchTypeFetchStarted(no));
 };
 
@@ -25,5 +24,6 @@ export const searchPartnerGetPokeSpeciesDispatcher = (
 	dispatch: Dispatch<actions.SearchPartnerActionTypes>
 ) => (no: number): void => {
 	if (!no) return;
+	dispatch(actions.searchNameResetData());
 	dispatch(actions.searchPartnerFetchStarted(no));
 };
