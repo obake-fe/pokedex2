@@ -37,7 +37,7 @@ export const searchNameGetPokeDataReducer = (
 			return { ...state, ...action.payload };
 		case types.SEARCH_NAME_FAILED:
 			return { ...state };
-		case types.SEARCH_RESET:
+		case types.SEARCH_NAME_RESET:
 			return initialState;
 		default:
 			return state;
@@ -56,7 +56,7 @@ export const searchTypeGetPokeDataReducer = (
 			return { ...state, ...action.payload };
 		case types.SEARCH_TYPE_FAILED:
 			return { ...state };
-		case types.SEARCH_RESET:
+		case types.SEARCH_TYPE_RESET:
 			return initialState;
 		default:
 			return state;
@@ -75,7 +75,7 @@ export const searchPartnerGetPokeDataReducer = (
 			return { ...state, ...action.payload };
 		case types.SEARCH_PARTNER_FAILED:
 			return { ...state };
-		case types.SEARCH_RESET:
+		case types.SEARCH_PARTNER_RESET:
 			return initialState;
 		default:
 			return state;

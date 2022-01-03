@@ -9,7 +9,7 @@ export const searchNameFetchSuccess = (res: NormalizedPokeDataType) =>
 export const searchNameFetchFailed = (err: Record<string, unknown>) =>
 	({ type: types.SEARCH_NAME_FAILED, error: err.response } as const);
 export const searchNameResetData = () =>
-	({ type: types.SEARCH_RESET } as const);
+	({ type: types.SEARCH_NAME_RESET } as const);
 
 export type SearchNameActionTypes =
 	| ReturnType<typeof searchNameFetchStarted>
@@ -25,7 +25,7 @@ export const searchTypeFetchSuccess = (res: NormalizedPokeDataType) =>
 export const searchTypeFetchFailed = (err: Record<string, unknown>) =>
 	({ type: types.SEARCH_TYPE_FAILED, error: err.response } as const);
 export const searchTypeResetData = () =>
-	({ type: types.SEARCH_RESET } as const);
+	({ type: types.SEARCH_TYPE_RESET } as const);
 
 export type SearchTypeActionTypes =
 	| ReturnType<typeof searchTypeFetchStarted>
@@ -41,7 +41,7 @@ export const searchPartnerFetchSuccess = (res: NormalizedPokeDataType) =>
 export const searchPartnerFetchFailed = (err: Record<string, unknown>) =>
 	({ type: types.SEARCH_PARTNER_FAILED, error: err.response } as const);
 export const searchPartnerResetData = () =>
-	({ type: types.SEARCH_RESET } as const);
+	({ type: types.SEARCH_PARTNER_RESET } as const);
 
 export type SearchPartnerActionTypes =
 	| ReturnType<typeof searchPartnerFetchStarted>

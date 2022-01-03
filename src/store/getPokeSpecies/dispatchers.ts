@@ -24,6 +24,6 @@ export const searchPartnerGetPokeSpeciesDispatcher = (
 	dispatch: Dispatch<actions.SearchPartnerActionTypes>
 ) => (no: number): void => {
 	if (!no) return;
-	dispatch(actions.searchNameResetData());
+	dispatch(actions.searchPartnerResetData());
 	dispatch(actions.searchPartnerFetchStarted(no));
 };
