@@ -46,7 +46,6 @@
 		"@storybook/node-logger": "^6.1.16",
 		"@storybook/preset-create-react-app": "^3.1.5",
 		"@storybook/react": "^6.1.16",
-		"@types/caniuse-lite": "^1.0.1",
 		"@types/chart.js": "^2.9.30",
 		"@types/classnames": "^2.2.11",
 		"@types/eslint": "7.2.6",
