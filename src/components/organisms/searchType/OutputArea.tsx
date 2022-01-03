@@ -1,5 +1,6 @@
 import { VFC } from "react";
 import { NormalizedPokeDataType } from "@store/getPokeData/reducers";
+import { SetLoadingUIType } from "@store/setLoadingUI/reducer";
 import { DescType } from "@utils/createDescArray";
 import { EnhancedIconListArea } from "@containers/organisms/searchType/IconListArea";
 import { SimpleDataCard } from "@components/molecules/SimpleDataCard";
@@ -24,10 +25,11 @@ const useStyles = makeStyles(() =>
 
 type Props = {
 	pokeData: NormalizedPokeDataType;
+	loadingUI: SetLoadingUIType;
 	DescArray: DescType[];
 };
 
-export const OutputArea: VFC<Props> = ({ pokeData, DescArray }) => {
+export const OutputArea: VFC<Props> = ({ pokeData, loadingUI, DescArray }) => {
 	const classes = useStyles();
 
 	return (
@@ -36,7 +38,7 @@ export const OutputArea: VFC<Props> = ({ pokeData, DescArray }) => {
 				<EnhancedIconListArea />
 			</Grid>
 			<Grid item xs classes={{ item: classes.dataCard }}>
-				<SimpleDataCard {...{ pokeData, DescArray }} />
+				<SimpleDataCard {...{ pokeData, loadingUI, DescArray }} />
 			</Grid>
 		</Grid>
 	);

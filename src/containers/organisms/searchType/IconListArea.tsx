@@ -5,6 +5,7 @@ import { AppState } from "@store/reducers";
 import { dispatchers } from "@store/dispatchers";
 import { NormalizedPokeDataType } from "@store/getPokeData/reducers";
 import { GetPokeTypeDataType } from "@store/getPokeTypeData/reducers";
+import { setLoadingUIDispatcher } from "@store/setLoadingUI/dispatcher";
 import { createAndPokeArray } from "@utils/createAndPokeArray";
 import { createOrPokeArray } from "@utils/createOrPokeArray";
 import { IconListArea } from "@components/organisms/searchType/IconListArea";
@@ -31,6 +32,9 @@ export const EnhancedIconListArea: VFC = () => {
 	};
 	const fetchPokeSpecies = (no: number): void => {
 		searchType.getPokeSpeciesDispatcher(dispatch)(no);
+	};
+	const setLoadingUI = (state: boolean): void => {
+		setLoadingUIDispatcher(dispatch)(state);
 	};
 
 	/** define for React Router Hooks */
@@ -61,6 +65,7 @@ export const EnhancedIconListArea: VFC = () => {
 		/** stop the processing if you select same pokemon */
 		if (+value === pokeData.id) return;
 
+		setLoadingUI(true);
 		fetchPokeData(+value);
 		fetchPokeSpecies(+value);
 
