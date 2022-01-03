@@ -54,5 +54,6 @@ Bulbasaur.args = {
 				"生まれたときから　背中に 不思議な　タネが　植えてあって 体と　ともに　育つという。"
 		}
 	],
-	statsArray: [45, 49, 49, 65, 65, 45]
+	statsArray: [45, 49, 49, 65, 65, 45],
+	loadingUI: { state: false }
 };
