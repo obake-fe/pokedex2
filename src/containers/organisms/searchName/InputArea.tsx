@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { AppState } from "@store/reducers";
 import { dispatchers } from "@store/dispatchers";
 import { OptionType } from "@store/setSelectedOption/reducer";
+import { setLoadingUIDispatcher } from "@store/setLoadingUI/dispatcher";
 import { createSuggestArray } from "@utils/createSuggestArray";
 import { InputArea } from "@components/organisms/searchName/InputArea";
 import pokeDataArray from "@constants/pokemon_data.json";
@@ -26,6 +27,9 @@ export const EnhancedInputArea: VFC = () => {
 	};
 	const fetchPokeSpecies = (no: number): void => {
 		searchName.getPokeSpeciesDispatcher(dispatch)(no);
+	};
+	const setLoadingUI = (state: boolean): void => {
+		setLoadingUIDispatcher(dispatch)(state);
 	};
 
 	/** create list for suggest */
@@ -69,6 +73,7 @@ export const EnhancedInputArea: VFC = () => {
 		/** stop the processing if you select same value */
 		if (option.value === selectedOption.value) return;
 
+		setLoadingUI(true);
 		setSelectedOption(selectedOption);
 		fetchPokeData(selectedOption.no);
 		fetchPokeSpecies(selectedOption.no);

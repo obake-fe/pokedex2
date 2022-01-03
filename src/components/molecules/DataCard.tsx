@@ -1,5 +1,6 @@
 import { VFC } from "react";
 import { NormalizedPokeDataType } from "@store/getPokeData/reducers";
+import { SetLoadingUIType } from "@store/setLoadingUI/reducer";
 import { DescType } from "@utils/createDescArray";
 import { DescriptionList } from "@components/atoms/DescriptionList";
 import { StatsRadarChart } from "@components/atoms/StatsRadarChart";
@@ -9,7 +10,8 @@ import {
 	createStyles,
 	makeStyles,
 	Box,
-	Container
+	Container,
+	CircularProgress
 } from "@material-ui/core";
 import classNames from "classnames";
 
@@ -24,6 +26,7 @@ const useStyles = makeStyles(() =>
 			backgroundRepeat: "repeat"
 		},
 		box: {
+			position: "relative",
 			maxWidth: 800,
 			minHeight: 428,
 			padding: "12px 40px 0",
@@ -41,12 +44,18 @@ const useStyles = makeStyles(() =>
 		},
 		simpleWrapper: {
 			width: "100%"
+		},
+		circular: {
+			position: "absolute",
+			top: "calc(50% - 40px)",
+			left: "calc(50% - 40px)"
 		}
 	})
 );
 
 export type Props = {
 	pokeData: NormalizedPokeDataType;
+	loadingUI: SetLoadingUIType;
 	DescArray: DescType[];
 	statsArray: number[];
 	graph: boolean;
@@ -56,6 +65,7 @@ export type Props = {
 
 export const DataCard: VFC<Props> = ({
 	pokeData,
+	loadingUI,
 	DescArray,
 	statsArray,
 	graph,
@@ -64,33 +74,37 @@ export const DataCard: VFC<Props> = ({
 }) => {
 	const classes = useStyles();
 
+	const DataComponent = pokeData.name ? (
+		<>
+			{children}
+			<EnhancedPokeImg no={pokeData.id} />
+			<Box
+				className={classNames(
+					classes.dataContainer,
+					simple && classes.descFlex
+				)}
+			>
+				<Container
+					className={classNames(
+						classes.ListWrapper,
+						simple && classes.simpleWrapper
+					)}
+				>
+					<DescriptionList data={DescArray} testId={`descId-${pokeData.id}`} />
+				</Container>
+				{graph && <StatsRadarChart data={statsArray} />}
+			</Box>
+		</>
+	) : null;
+
 	return (
 		<Paper className={classes.paper}>
 			<Box id="target-component" className={classes.box}>
-				{pokeData.name && (
-					<>
-						{children}
-						<EnhancedPokeImg no={pokeData.id} />
-						<Box
-							className={classNames(
-								classes.dataContainer,
-								simple && classes.descFlex
-							)}
-						>
-							<Container
-								className={classNames(
-									classes.ListWrapper,
-									simple && classes.simpleWrapper
-								)}
-							>
-								<DescriptionList
-									data={DescArray}
-									testId={`descId-${pokeData.id}`}
-								/>
-							</Container>
-							{graph && <StatsRadarChart data={statsArray} />}
-						</Box>
-					</>
+				{DataComponent}
+				{loadingUI.state && (
+					<Box className={classes.circular}>
+						<CircularProgress size={80} />
+					</Box>
 				)}
 			</Box>
 		</Paper>

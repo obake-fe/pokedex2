@@ -2,6 +2,7 @@ import { VFC } from "react";
 import { SetPartnerInfoState } from "@store/setPartnerInfo/reducer";
 import { NormalizedPokeDataType } from "@store/getPokeData/reducers";
 import { NormalizedPokeSpeciesType } from "@store/getPokeSpecies/reducers";
+import { SetLoadingUIType } from "@store/setLoadingUI/reducer";
 import { EnhancedDataCard } from "@containers/molecules/DataCard";
 import { Box, Typography, createStyles, makeStyles } from "@material-ui/core";
 import { theme } from "@styles/theme";
@@ -47,12 +48,14 @@ type Props = {
 	partnerInfo: SetPartnerInfoState;
 	pokeData: NormalizedPokeDataType;
 	pokeSpecies: NormalizedPokeSpeciesType;
+	loadingUI: SetLoadingUIType;
 };
 
 export const OutputArea: VFC<Props> = ({
 	partnerInfo,
 	pokeData,
-	pokeSpecies
+	pokeSpecies,
+	loadingUI
 }) => {
 	const classes = useStyles();
 	return (
@@ -60,6 +63,7 @@ export const OutputArea: VFC<Props> = ({
 			<EnhancedDataCard
 				pokeData={pokeData}
 				pokeSpecies={pokeSpecies}
+				loadingUI={loadingUI}
 				graph={false}
 				simple
 			>

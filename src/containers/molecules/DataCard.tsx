@@ -1,12 +1,14 @@
 import { VFC } from "react";
 import { NormalizedPokeSpeciesType } from "@store/getPokeSpecies/reducers";
 import { NormalizedPokeDataType } from "@store/getPokeData/reducers";
+import { SetLoadingUIType } from "@store/setLoadingUI/reducer";
 import { DataCard } from "@components/molecules/DataCard";
 import { createDescArray } from "@utils/createDescArray";
 
 type Props = {
 	pokeData: NormalizedPokeDataType;
 	pokeSpecies: NormalizedPokeSpeciesType;
+	loadingUI: SetLoadingUIType;
 	graph?: boolean;
 	simple?: boolean;
 	children?: JSX.Element;
@@ -15,6 +17,7 @@ type Props = {
 export const EnhancedDataCard: VFC<Props> = ({
 	pokeData,
 	pokeSpecies,
+	loadingUI,
 	graph = true,
 	simple = false,
 	children
@@ -27,7 +30,9 @@ export const EnhancedDataCard: VFC<Props> = ({
 	);
 
 	return (
-		<DataCard {...{ pokeData, DescArray, statsArray, graph, simple }}>
+		<DataCard
+			{...{ pokeData, loadingUI, DescArray, statsArray, graph, simple }}
+		>
 			{children}
 		</DataCard>
 	);

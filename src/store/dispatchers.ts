@@ -15,6 +15,7 @@ import {
 import { setSwitchStateDispatcher } from "@store/setSwitchState/dispatcher";
 import { searchTypeGetPokeTypeDataDispatcher } from "@store/getPokeTypeData/dispatcher";
 import { setPartnerInfoDispatcher } from "@store/setPartnerInfo/dispatcher";
+import { setLoadingUIDispatcher } from "@store/setLoadingUI/dispatcher";
 
 export const dispatchers = {
 	searchName: {
@@ -33,5 +34,6 @@ export const dispatchers = {
 		setPartnerInfoDispatcher,
 		searchPartnerGetPokeDataDispatcher,
 		searchPartnerGetPokeSpeciesDispatcher
-	}
+	},
+	setLoadingUIDispatcher
 };

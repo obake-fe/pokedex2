@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { AppState } from "@store/reducers";
 import { dispatchers } from "@store/dispatchers";
 import { SetPartnerInfoState } from "@store/setPartnerInfo/reducer";
+import { setLoadingUIDispatcher } from "@store/setLoadingUI/dispatcher";
 import { decidePartnerInfo, PartnerInfoType } from "@utils/decidePartnerInfo";
 import { InputArea } from "@components/organisms/searchPartner/InputArea";
 import { useFormik } from "formik";
@@ -30,6 +31,9 @@ export const EnhancedInputArea: VFC = () => {
 	};
 	const fetchPartnerPokeSpecies = (partnerNo: number): void => {
 		searchPartner.searchPartnerGetPokeSpeciesDispatcher(dispatch)(partnerNo);
+	};
+	const setLoadingUI = (state: boolean): void => {
+		setLoadingUIDispatcher(dispatch)(state);
 	};
 
 	/** define for React Router Hooks */
@@ -61,6 +65,7 @@ export const EnhancedInputArea: VFC = () => {
 	 */
 	const searchPartnerPoke = (value: { inputText: string }): void => {
 		if (!value.inputText) return;
+		setLoadingUI(true);
 		const partnerInfo = decidePartnerInfo(value.inputText);
 		setPartnerInfo(value.inputText, partnerInfo);
 		fetchPokeData(partnerInfo.pokeNo);

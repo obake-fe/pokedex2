@@ -1,9 +1,11 @@
-import { VFC } from "react";
-import { useSelector, shallowEqual } from "react-redux";
+import { useEffect, VFC } from "react";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { AppState } from "@store/reducers";
 import { NormalizedPokeDataType } from "@store/getPokeData/reducers";
 import { NormalizedPokeSpeciesType } from "@store/getPokeSpecies/reducers";
 import { OutputArea } from "@components/organisms/searchName/OutputArea";
+import { setLoadingUIDispatcher } from "@store/setLoadingUI/dispatcher";
+import { SetLoadingUIType } from "@store/setLoadingUI/reducer";
 
 export const EnhancedOutputArea: VFC = () => {
 	/** state */
@@ -15,6 +17,21 @@ export const EnhancedOutputArea: VFC = () => {
 		(state) => state.searchName.pokeSpecies,
 		shallowEqual
 	);
+	const loadingUI = useSelector<AppState, SetLoadingUIType>(
+		(state) => state.loadingUI
+	);
 
-	return <OutputArea pokeData={pokeData} pokeSpecies={pokeSpecies} />;
+	/** dispatchers */
+	const dispatch = useDispatch();
+	const setLoadingUI = (state: boolean): void => {
+		setLoadingUIDispatcher(dispatch)(state);
+	};
+
+	useEffect(() => {
+		if (pokeData.name && pokeSpecies.name) {
+			setLoadingUI(false);
+		}
+	}, [pokeData, pokeSpecies]);
+
+	return <OutputArea {...{ pokeData, pokeSpecies, loadingUI }} />;
 };

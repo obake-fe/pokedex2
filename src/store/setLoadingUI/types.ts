@@ -1,0 +1,1 @@
+export const SET_LOADING_UI = "COMMON/SET_LOADING_UI";
