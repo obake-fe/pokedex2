@@ -106,7 +106,13 @@ workflows:
               ignore: master
   build-and-deploy:
     jobs:
+      - set_up:
+          filters:
+            branches:
+              only: master
       - build and deploy:
           filters:
             branches:
               only: master
+          requires:
+            - set_up
