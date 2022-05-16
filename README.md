@@ -4,9 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 https://laughing-cray-9d5255.netlify.app/
 
 ## Flow
-![pokedex_flow (2)](https://user-images.githubusercontent.com/39367757/113135797-87081600-925d-11eb-9f1a-617243c38bb6.png)
+![pokedex_flow drawio (1)](https://user-images.githubusercontent.com/39367757/168613202-36e47b87-d0b7-4f7a-a1dc-864f9aafb90f.png)
+
 
 ## Node.js
+
 ```shell
 14.15.1
 ```
